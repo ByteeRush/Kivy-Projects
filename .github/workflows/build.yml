@@ -35,6 +35,9 @@ jobs:
     - name: Build with Buildozer
       run: |
         cd Calculator
+        # GitHub Actions'ın varsayılan NDK yollarını temizleyerek Buildozer'ın kendi NDK 25b'yi indirmesini ve kullanmasını sağlıyoruz
+        unset ANDROID_NDK
+        unset ANDROID_NDK_HOME
         # SDK lisanslarını otomatik onaylayarak derlemeyi başlatıyoruz
         yes | buildozer -v android debug
 
