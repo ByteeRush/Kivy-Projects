@@ -24,6 +24,12 @@ jobs:
             git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev build-essential libstdc++6
 
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
     - name: Install Buildozer and Cython
       run: |
         pip install --upgrade pip
@@ -35,9 +41,16 @@ jobs:
     - name: Build with Buildozer
       run: |
         cd Calculator
-        # GitHub Actions'ın varsayılan NDK yollarını temizleyerek Buildozer'ın kendi NDK 25b'yi indirmesini ve kullanmasını sağlıyoruz
+        # GitHub Actions'ın varsayılan çakışan NDK yollarını tamamen temizle
         unset ANDROID_NDK
         unset ANDROID_NDK_HOME
+        
+        # Buildozer'ın kendi beklediği NDK ve SDK ortam yollarını sabitle
+        export ANDROID_HOME="/home/runner/.buildozer/android/platform/android-sdk"
+        export ANDROIDNDK="/home/runner/.buildozer/android/platform/android-ndk-r25b"
+        export ANDROIDAPI="33"
+        export ANDROIDMINAPI="24"
+
         # SDK lisanslarını otomatik onaylayarak derlemeyi başlatıyoruz
         yes | buildozer -v android debug
 
