@@ -1,0 +1,163 @@
+<RegisterScreen>:
+    name: 'register'
+    Image:
+        source: "images/register_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     # <--- BURAYI 'False' YAP! Ekranı tıklim tıklim doldurur, boşluk bırakmaz.
+        mipmap: True
+   
+    
+    # Mobilde klavye açıldığında taşmayı ve sıkışmayı önleyen ScrollView
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        size: root.size
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(15)
+            padding: [dp(20), dp(40), dp(20), dp(40)]
+
+            # Başlık (Mobilde ekrana sığacak şekilde optimize edildi)
+            Label:
+                id: reg_label
+                text: "ProSetMan - Create Account"
+                font_size: '28sp'
+                font_name: "materials/Pacifico-Regular.ttf"
+                size_hint_y: None
+                height: dp(60)
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+
+            # Kayıt kartını ekranda kusursuz ortalayan AnchorLayout
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                size_hint_y: None
+                height: reg_card.height
+
+                # Esnek ve Dinamik Kayıt Kartı / Paneli
+                BoxLayout:
+                    id: reg_card
+                    orientation: "vertical"
+                    size_hint_x: 0.92   # Ekran genişliğine göre otomatik oranlanır
+                    size_hint_y: None
+                    height: self.minimum_height   
+                    spacing: dp(14)     
+                    padding: [dp(20), dp(20), dp(20), dp(20)]  
+
+                    canvas.before:
+                        # --- Dış Çerçeve / Border ---
+                        Color:
+                            rgba: 0.3, 0.3, 0.35, 0.6   
+                        RoundedRectangle:
+                            pos: self.x - dp(2), self.y - dp(2) 
+                            size: self.width + dp(4), self.height + dp(4) 
+                            radius: [dp(26)]                
+
+                        # --- İç Arka Plan ---
+                        Color:
+                            rgba: 0.12, 0.12, 0.16, 0.98 
+                        RoundedRectangle:
+                            pos: self.pos               
+                            size: self.size             
+                            radius: [dp(24)]                
+
+                    TextInput:
+                        id: reg_user
+                        hint_text: "Choose Username:"
+                        multiline: False
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+                        cursor_color: (1, 1, 1, 1)
+                        size_hint_x: 1.0  
+                        size_hint_y: None
+                        height: dp(45) 
+                        pos_hint: {"center_x": 0.5}
+
+                    TextInput:
+                        id: reg_email
+                        hint_text: "Choose Email:"
+                        multiline: False
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+                        cursor_color: (1, 1, 1, 1)
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45) 
+                        pos_hint: {"center_x": 0.5}
+
+                    TextInput:
+                        id: reg_pass
+                        hint_text: "Choose Password:"
+                        multiline: False
+                        password: True
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+                        cursor_color: (1, 1, 1, 1)
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45) 
+                        pos_hint: {"center_x": 0.5}
+
+                    Button:
+                        id: reg_submit
+                        text: "Sign Up"
+                        font_size: '16sp'
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45) 
+                        pos_hint: {"center_x": 0.5}
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 0, 0, 0, 0
+                        on_release: root.add_user_to_app()
+
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex("#000000") if self.state == "normal" else get_color_from_hex('#000000')
+                            RoundedRectangle:
+                                pos: self.x - dp(2), self.y - dp(2)
+                                size: self.width + dp(4), self.height + dp(4)
+                                radius: [dp(22)]
+
+                            Color:
+                                rgba: get_color_from_hex("#00F5A0") if self.state == "normal" else get_color_from_hex('#00F5A0')
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(20)]
+
+                    Button:
+                        text: "Back to Login"
+                        font_size: '16sp'
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45)
+                        pos_hint: {"center_x": 0.5}
+                        color: (1, 1, 1, 1)
+                        on_release: app.change_screen_randomly('login')
+                        
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 0, 0, 0, 0
+                        
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex('#000000') if self.state == 'normal' else get_color_from_hex('#000000')
+                            RoundedRectangle:
+                                pos: self.x - dp(2), self.y - dp(2)
+                                size: self.width + dp(4), self.height + dp(4)
+                                radius: [dp(22)]
+
+                            Color:
+                                rgba: get_color_from_hex('#79CBCA') if self.state == 'normal' else get_color_from_hex('#5fa8a7')
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size 
+                                radius: [dp(20)]

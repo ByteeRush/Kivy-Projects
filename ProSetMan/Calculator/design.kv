@@ -1,0 +1,197 @@
+<CalculatorLayout>:
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1  # Arka planı tamamen koyu renk (Nearly Black) yaptık
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        padding: 10
+        spacing: 10
+
+        TextInput:
+            id: screen
+            text: "0"
+            font_size: 40
+            foreground_color: (1, 1, 1, 1)  # Yazı rengi beyaz
+            background_color: (0.15, 0.15, 0.15, 1)  # Ekran arka planı
+            cursor_color: (1, 1, 1, 1)
+            multiline: False
+            halign: "right"
+            size_hint: (1, 0.3)
+            readonly: True  # Klavyeden yazılmasın, sadece butonlarla yazılsın
+
+        GridLayout:
+            id: button_container
+            cols: 4
+            rows: 5
+            spacing: 8  # Butonlar arası boşluk
+            size_hint: (1, 0.7)
+         
+            # --- 1. SATIR (Özel Tuşlar ve Bölme) ---
+            Button:
+                text: "AC"
+                font_size: 24
+                background_normal: ''
+                background_color: (0.6, 0.2, 0.2, 1)  # Kırmızımsı (Temizle)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+            
+            Button:
+                text: "()"
+                font_size: 24
+                background_normal: ''
+                background_color: (0.3, 0.3, 0.3, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "%"
+                font_size: 24
+                background_normal: ''
+                background_color: (0.3, 0.3, 0.3, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "/"
+                font_size: 28
+                background_normal: ''
+                background_color: (1, 0.6, 0, 1)  # Turuncu (İşlem tuşu)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            # --- 2. SATIR (7, 8, 9, Çarpı) ---
+            Button:
+                text: "7"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)  # Koyu Gri (Sayı)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "8"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "9"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "*"
+                font_size: 28
+                background_normal: ''
+                background_color: (1, 0.6, 0, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            # --- 3. SATIR (4, 5, 6, Eksi) ---
+            Button:
+                text: "4"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "5"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "6"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "-"
+                font_size: 28
+                background_normal: ''
+                background_color: (1, 0.6, 0, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            # --- 4. SATIR (1, 2, 3, Artı) ---
+            Button:
+                text: "1"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "2"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "3"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "+"
+                font_size: 28
+                background_normal: ''
+                background_color: (1, 0.6, 0, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            # --- 5. SATIR (0, Nokta, Geri Al, Eşittir) ---
+            Button:
+                text: "0"
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "."
+                font_size: 28
+                background_normal: ''
+                background_color: (0.2, 0.2, 0.2, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "|<-"
+                font_size: 24
+                background_normal: ''
+                background_color: (0.3, 0.3, 0.3, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.press_number(self)
+
+            Button:
+                text: "="
+                font_size: 28
+                background_normal: ''
+                background_color: (0.1, 0.6, 0.2, 1)  # Yeşil (Eşittir butonu)
+                color: (1, 1, 1, 1)
+                on_press: root.calculate(self)

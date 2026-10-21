@@ -1,0 +1,153 @@
+<ProductDetailScreen>:
+    name: "productdetails"
+
+    canvas.before:
+        Color:
+            rgba: 0.15, 0.16, 0.21, 1  # Şık koyu gri/lacivert arka plan
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
+
+        # Üst Başlık Çubuğu
+        BoxLayout:
+            size_hint_y: None
+            height: dp(40)
+            Label:
+                text: "Ürün Detayları"
+                font_size: "22sp"
+                bold: True
+                color: 1, 1, 1, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+        # İçerik Alanı (Sol: Resim, Sağ: Bilgiler)
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: dp(15)
+            size_hint_y: 0.85
+
+            # Sol Taraf: Ürün Görseli Önizleme Kutusu
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.4
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.22, 0.28, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(8)]
+                
+                AsyncImage:
+                    id: detail_image
+                    source: ""
+                    allow_stretch: True
+                    keep_ratio: True
+
+            # Sağ Taraf: Metinsel Detaylar Paneli
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(8)
+                size_hint_x: 0.6
+                padding: [dp(10), 0, 0, 0]
+
+                Label:
+                    id: lbl_producer
+                    text: "Firma / Üretici: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_type
+                    text: "Ürün Tipi: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_name
+                    text: "Ürün Adı: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+                    bold: True
+
+                Label:
+                    id: lbl_count
+                    text: "Adet / Koli: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_price
+                    text: "Birim Fiyat: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_total
+                    text: "Toplam Tutar: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_barcode
+                    text: "Barkod: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    id: lbl_date
+                    text: "Kayıt Tarihi: -"
+                    font_size: "14sp"
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+                    color: 0.9, 0.9, 0.9, 1
+
+        # Alt Kısım: Geri Dön Butonu
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            padding: [dp(50), 0, dp(50), 0]
+
+            Button:
+                text: "Geri Dön"
+                font_size: "15sp"
+                bold: True
+                background_normal: ""
+                background_color: 0.2, 0.6, 0.86, 1
+                color: 1, 1, 1, 1
+                on_release: app.change_screen_randomly("products")
+                canvas.before:
+                    Color:
+                        rgba: 0.18, 0.5, 0.75, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(8)]

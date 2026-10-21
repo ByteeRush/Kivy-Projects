@@ -1,0 +1,303 @@
+<ProductRow>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(45)
+    padding: [dp(10), dp(5), dp(10), dp(5)]
+    spacing: dp(8)
+
+    canvas.before:
+        Color:
+            rgba: 0.2, 0.2, 0.2, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # Ürün ID
+    Label:
+        text: str(root.product_id)
+        size_hint_x: 0.10
+        halign: "left"
+        valign: "middle"
+        text_size: self.size
+        font_size: "13sp"
+
+    # Ürün adı
+    Label:
+        text: str(root.p_name)
+        size_hint_x: 0.24
+        halign: "left"
+        valign: "middle"
+        text_size: self.size
+        font_size: "13sp"
+        bold: True
+
+    # Fiyat
+    Label:
+        text: str(root.p_price) + " ₺"
+        size_hint_x: 0.12
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+        font_size: "13sp"
+
+    # Adet
+    Label:
+        text: str(root.p_count) + " " + str(root.p_type) 
+        size_hint_x: 0.12
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+        font_size: "13sp"
+
+    # Tarih
+    Label:
+        text: str(root.p_date)
+        size_hint_x: 0.16
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+        font_size: "12sp"
+
+    # Detaylar butonu
+    Button:
+        text: "Detaylar"
+        font_size: "11sp"
+        size_hint: (None, None)
+        width: dp(55)
+        height: dp(32)
+        pos_hint: {"center_y": 0.5}
+        background_normal: ""
+        background_down: ""
+        background_color: 0, 0, 0, 0
+        color: 1, 1, 1, 1
+        on_release: root.trigger_update_for_details()
+
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex("#4F46E5" if self.state == "normal" else "#4338CA")
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(6)]
+
+    # Düzenle butonu
+    Button:
+        text: "Düzenle"
+        font_size: "11sp"
+        size_hint: (None, None)
+        width: dp(55)
+        height: dp(32)
+        pos_hint: {"center_y": 0.5}
+        background_normal: ""
+        background_down: ""
+        background_color: 0, 0, 0, 0
+        color: 1, 1, 1, 1
+        on_release: root.trigger_update()
+
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex("#0EA5E9" if self.state == "normal" else "#0284C7")
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(6)]
+
+    # Sil butonu
+    Button:
+        text: "Sil"
+        font_size: "11sp"
+        size_hint: (None, None)
+        width: dp(40)
+        height: dp(32)
+        pos_hint: {"center_y": 0.5}
+        background_normal: ""
+        background_down: ""
+        background_color: 0, 0, 0, 0
+        color: 1, 1, 1, 1
+        on_release: root.delete_item()
+
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex("#EF4444" if self.state == "normal" else "#DC2626")
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(6)]
+
+
+<SpinnerOption>:
+    background_normal: ""
+    background_color: 0.15, 0.15, 0.15, 1
+    color: 1, 1, 1, 1
+    font_size: "14sp"
+    height: dp(45)
+    halign: "center"
+    valign: "middle"
+
+
+<ProductScreen>:
+    name: "products"
+
+    Image:
+        source: "images/prodcut_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     
+        mipmap: True
+   
+    BoxLayout:
+        orientation: "vertical"
+
+        # ÜST MENÜ ÇUBUĞU (SENİN İSTEDİĞİN GİBİ DOKUNULMADI)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(40)
+
+            canvas.before:
+                Color:
+                    rgba: 0.9, 0.9, 0.9, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "Ürün Ekle"
+                size_hint: None, None
+                size: dp(90), dp(40)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0, 1
+                on_release: app.change_screen_randomly('insertproduct')
+
+            Spinner:
+                text: "Kayıt Formatı"
+                values: ["Excel", "Pdf"]
+                size_hint: None, None
+                size: dp(120), dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0, 1
+                halign: "center"
+                on_text:
+                    if self.text in self.values: app.on_filter_selected(self.text)
+
+            Button:
+                text: "Gelişmiş Filtre"
+                size_hint: None, None
+                size: dp(120), dp(40)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0, 1
+                on_release: app.change_screen_randomly('filterproduct')
+
+            Button:
+                text: "Çıkış"
+                size_hint: None, None
+                size: dp(70), dp(40)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0, 1
+                on_release: app.change_screen_randomly('login')
+
+            Widget:
+
+        # Ana ürün paneli
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(20)
+
+            BoxLayout:
+                size_hint_y: None
+                height: dp(55)
+
+                Label:
+                    id: pr_title
+                    text: "ProSetMan - Product Management Panel"
+                    font_size: "30sp"
+                    font_name: "materials/Pacifico-Regular.ttf"
+
+            BoxLayout:
+                orientation: "vertical"
+
+                # Sabit başlık satırı
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(45)
+                    padding: [dp(10), dp(5), dp(10), dp(5)]
+                    spacing: dp(8)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.15, 0.15, 0.15, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    Label:
+                        text: "Ürün ID"
+                        size_hint_x: 0.10
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                    Label:
+                        text: "Ürün Adı"
+                        size_hint_x: 0.24
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                    Label:
+                        text: "Birim Fiyatı"
+                        size_hint_x: 0.12
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                    Label:
+                        text: "Adet/Koli"
+                        size_hint_x: 0.12
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                    Label:
+                        text: "Tarih"
+                        size_hint_x: 0.16
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                    Label:
+                        text: "İşlem"
+                        size_hint_x: None
+                        width: dp(156)
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+
+                # Dinamik ürün listesi
+                RecycleView:
+                    id: rv
+                    viewclass: "ProductRow"
+                    bar_width: dp(8)
+                    scroll_type: ["bars", "content"]
+
+                    RecycleBoxLayout:
+                        default_size: None, dp(45)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: "vertical"
+                        spacing: dp(2)

@@ -1,0 +1,343 @@
+<FilterScreen>:
+    name: 'filterproduct'
+    Image:
+        source: "images/prodcut_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     # <--- BURAYI 'False' YAP! Ekranı tıklim tıklim doldurur, boşluk bırakmaz.
+        mipmap: True
+
+    ScrollView:
+        size: root.width, root.height
+        do_scroll_x: False
+        do_scroll_y: True
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: 20
+            spacing: 15
+
+            # 1. Üst Başlık Alanı
+            BoxLayout:
+                size_hint_y: None
+                height: '70dp'
+
+                Label:
+                    text: "ProSetMan - Gelişmiş Filtre"
+                    font_size: '32sp'
+                    font_name: "materials/Pacifico-Regular.ttf"
+
+            # --- PANEL 1: Ürün İsmi ---
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: (0.94, None)      
+                height: self.minimum_height   
+                spacing: 10                   
+                padding: [20, 15, 20, 15]     
+                pos_hint: {"center_x": 0.5}
+                    
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.35, 0.6   
+                    RoundedRectangle:
+                        pos: self.x - 2, self.y - 2 
+                        size: self.width + 4, self.height + 4 
+                        radius: [26]                
+
+                    Color:
+                        rgba: 0.12, 0.12, 0.16, 0.98 
+                    RoundedRectangle:
+                        pos: self.pos               
+                        size: self.size             
+                        radius: [24]
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Ürün İsmi"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_name_input
+                        hint_text: "Aranacak isim..."
+                        multiline: False
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+            # --- PANEL 2: Min ve Max Fiyat ---
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: (0.94, None)      
+                height: self.minimum_height   
+                spacing: 12                   
+                padding: [20, 15, 20, 15]     
+                pos_hint: {"center_x": 0.5}
+                    
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.35, 0.6   
+                    RoundedRectangle:
+                        pos: self.x - 2, self.y - 2 
+                        size: self.width + 4, self.height + 4 
+                        radius: [26]                
+
+                    Color:
+                        rgba: 0.12, 0.12, 0.16, 0.98 
+                    RoundedRectangle:
+                        pos: self.pos               
+                        size: self.size             
+                        radius: [24]
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Min Fiyat"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_min_price
+                        hint_text: "₺ En az..."
+                        multiline: False
+                        input_filter: 'float'
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Max Fiyat"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_max_price
+                        hint_text: "₺ En çok..."
+                        multiline: False
+                        input_filter: 'float'
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+            # --- PANEL 3: Tarih Aralığı ---
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: (0.94, None)      
+                height: self.minimum_height   
+                spacing: 12                   
+                padding: [20, 15, 20, 15]     
+                pos_hint: {"center_x": 0.5}
+                    
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.35, 0.6   
+                    RoundedRectangle:
+                        pos: self.x - 2, self.y - 2 
+                        size: self.width + 4, self.height + 4 
+                        radius: [26]                
+
+                    Color:
+                        rgba: 0.12, 0.12, 0.16, 0.98 
+                    RoundedRectangle:
+                        pos: self.pos               
+                        size: self.size             
+                        radius: [24]
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Başlangıç Tarihi"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_start_date
+                        hint_text: "GG.AA.YYYY"
+                        multiline: False
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Bitiş Tarihi"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_end_date
+                        hint_text: "GG.AA.YYYY"
+                        multiline: False
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+            # --- PANEL 4: Min ve Max Ürün Adedi (Aralıklı Arama) ---
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: (0.94, None)      
+                height: self.minimum_height   
+                spacing: 12                   
+                padding: [20, 15, 20, 15]     
+                pos_hint: {"center_x": 0.5}
+                    
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.35, 0.6   
+                    RoundedRectangle:
+                        pos: self.x - 2, self.y - 2 
+                        size: self.width + 4, self.height + 4 
+                        radius: [26]                
+
+                    Color:
+                        rgba: 0.12, 0.12, 0.16, 0.98 
+                    RoundedRectangle:
+                        pos: self.pos               
+                        size: self.size             
+                        radius: [24]
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Min Adet"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_min_count
+                        hint_text: "En az adet..."
+                        multiline: False
+                        input_filter: 'int'
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: '48dp'
+                    spacing: 15
+
+                    Label:
+                        text: "Max Adet"
+                        size_hint_x: 0.35
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+
+                    TextInput:
+                        id: filter_max_count
+                        hint_text: "En çok adet..."
+                        multiline: False
+                        input_filter: 'int'
+                        size_hint_x: 0.65
+                        size_hint_y: None
+                        height: '48dp'
+                        foreground_color: (1, 1, 1, 1)
+                        background_color: (0.15, 0.15, 0.15, 1)
+
+            # --- PANEL 5: Butonlar (Üstten boşluklu ve rahat) ---
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: (0.94, None)
+                height: '60dp'              # Yüksekliği netleştirdik
+                spacing: 15
+                pos_hint: {"center_x": 0.5}
+
+                Button:
+                    text: "Uygula"
+                    font_size: '16sp'
+                    size_hint_x: 0.5
+                    size_hint_y: None
+                    height: '48dp'
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 0, 0, 0, 0
+                    on_release: root.apply_filter()
+
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex('#0c0c6d')
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+
+                Button:
+                    text: "Geri Dön"
+                    font_size: '16sp'
+                    size_hint_x: 0.5
+                    size_hint_y: None
+                    height: '48dp'
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 0, 0, 0, 0
+                    on_release: app.change_screen_randomly('products')
+
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex('#de512b')
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+
+            # Sayfanın en altında kaydırırken butonların rahat görünmesi için alt pay
+            Widget:
+                size_hint_y: None
+                height: '30dp'
