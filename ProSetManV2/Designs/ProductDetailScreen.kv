@@ -1,0 +1,951 @@
+<SpinnerOption>:
+    background_normal: ""
+    background_color: 0.1, 0.1, 0.12, 1
+    color: 0.9, 0.75, 0.3, 1
+    font_size: "14sp"
+    height: dp(45)
+    halign: "center"
+    valign: "middle"
+
+
+<ProductUpdateWidget>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height  # <--- Sabit yerine otomatik
+    spacing: dp(5)
+    padding: dp(2)
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        padding: [dp(10), dp(10), dp(10), dp(10)]
+        spacing: dp(10)
+
+        canvas.before:
+            # Ana Çerçeve: Amber / Turuncu Cyberpunk Tonu (Ana panelle uyumlu)
+            Color:
+                rgba: 0.9, 0.5, 0.1, 0.95
+            RoundedRectangle:
+                pos: self.x - dp(2), self.y - dp(2)
+                size: self.width + dp(4), self.height + dp(4)
+                radius: [dp(16)]
+            # Derin Siyah İç Zemin
+            Color:
+                rgba: 0.08, 0.08, 0.1, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(14)]
+
+        # --- GÜNCELLEME ALANLARI ---
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Firma İsmi"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            Spinner:
+                id: company_spinner
+                text: "Firma Seçiniz..."
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(41)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                font_size: '15sp'
+                halign: "center"
+                valign: "middle"
+
+                canvas.before:
+                    # Çerçeve: Kehribar / Sarı Tonu
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+        # Ürün Tipi
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Ürün Tipi"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_type
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+        
+        # Ürün İsmi
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Ürün İsmi"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_name
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+        # Ürün Adedi
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Ürün Adedi"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_count
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    input_filter: 'int'
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+        # Ürün Birim Fiyatı
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Ürün Birim Fiyatı"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_price
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    input_filter: 'float'
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+        # Ürün Toplam Tutar
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Ürün Toplam Tutar"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_total_price
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+                    on_text: root.calculate_total()
+
+        # Barcode Code
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Barcode Code"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_barcode
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+        # Tarih
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Tarih"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(45)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_date
+                    hint_text: "Giriş Yapınız..."
+                    multiline: False
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(41) 
+                    font_size: '15sp'
+                    padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+        # Alt Butonlar (Ürün Ekle & Geri Dön)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(46)
+            spacing: dp(15)
+
+            Button:
+                text: "Güncelle"
+                font_size: '15sp'
+                bold: True
+                size_hint_x: 1.0
+                size_hint_y: None
+                height: dp(46)
+                pos_hint: {"center_x": 0.5}
+                background_normal: ''
+                background_down: ''
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                on_release: root.update_company_product()
+                
+                canvas.before:
+                    Color:
+                        rgba: get_color_from_hex("#000000") if self.state == "normal" else get_color_from_hex('#000000')
+                    RoundedRectangle:
+                        pos: self.x - dp(2), self.y - dp(2)
+                        size: self.width + dp(4), self.height + dp(4)
+                        radius: [dp(14)]
+
+                    # Buton: Retro Amber / Turuncu Ton (Register ekranındaki tonla birebir aynı)
+                    Color:
+                        rgba: get_color_from_hex("#D35400") if self.state == "normal" else get_color_from_hex('#A04000')
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+<ProductDetailsWidget>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height  # Otomatik yükseklik
+    spacing: dp(5)
+    padding: dp(2)
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        padding: [dp(10), dp(10), dp(10), dp(10)]
+        spacing: dp(10)
+
+        canvas.before:
+            Color:
+                rgba: 0.7, 0.5, 0.2, 0.85
+            RoundedRectangle:
+                pos: self.x - dp(2), self.y - dp(2)
+                size: self.width + dp(4), self.height + dp(4)
+                radius: [dp(16)]
+            Color:
+                rgba: 0.08, 0.08, 0.1, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(14)]
+
+        # --- STOK DURUM & KONTROL PANELİ ---
+        
+        # 1. Stok Durumu (Spinner: Kritik, Kalmadı, Var vb.)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            Label:
+                text: "Stok Durumu"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            Spinner:
+                id: stock_status_spinner
+                text: "Seçiniz"
+                values: ["Kritik", "Kalmadı", "Var"]
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(41)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                font_size: '15sp'
+                halign: "center"
+                valign: "middle"
+
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+
+        # 3. Açıklama / Notlar (Gerçek Çok Satırlı Text Area)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(125)
+            spacing: dp(15)
+
+            Label:
+                text: "Açıklama / Not"
+                size_hint_x: 0.35
+                halign: 'left'
+                valign: 'top'
+                text_size: self.size
+                color: (0.95, 0.95, 0.95, 1)
+
+            BoxLayout:
+                size_hint_x: 0.65
+                size_hint_y: None
+                height: dp(125)
+                padding: [dp(4), dp(2)]
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.12, 0.12, 0.14, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+                TextInput:
+                    id: product_description
+                    hint_text: "Stok durumu ve notlar..."
+                    multiline: True
+                    foreground_color: (1, 1, 1, 1)
+                    cursor_color: (0.95, 0.6, 0.1, 1)
+                    hint_text_color: (0.5, 0.5, 0.5, 1)
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0, 0, 0, 0
+                    size_hint_x: 1.0  
+                    size_hint_y: None
+                    height: dp(120)
+                    font_size: '15sp'
+                    padding: [dp(8), dp(8), dp(8), dp(8)]
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(15)
+
+            # 2. Güncelle / Kaydet Butonu
+            Button:
+                text: "Güncelle"
+                size_hint_x: 0.5
+                size_hint_y: None
+                height: dp(41)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                font_size: '15sp'
+                bold: True
+                on_release: root.save_or_update_stock_status()  # Python'daki güncelleme fonksiyonun
+
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.6, 0.1, 0.85  # Tema rengi (Kehribar / Turuncu)
+                    RoundedRectangle:
+                        pos: self.x - dp(1), self.y - dp(1)
+                        size: self.width + dp(2), self.height + dp(2)
+                        radius: [dp(6)]
+                    Color:
+                        rgba: 0.2, 0.12, 0.05, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(5)]
+
+
+<ProductCard>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    spacing: dp(5)
+    padding: dp(5)
+
+    # --- 1. ÜST ANA BAŞLIK VE BUTONLAR (Her Zaman Görünür) ---
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: dp(40)
+        spacing: dp(8)
+        padding: [dp(8), dp(2)]
+        
+        canvas.before:
+            Color:
+                rgba: 0.12, 0.12, 0.14, 0.9
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(8)]
+
+        Label:
+            id: product_name
+            text: root.p_name
+            bold: True
+            color: 0.9, 0.75, 0.3, 1
+            text_size: self.size        # Hem genişliği hem yüksekliği Label'ın kendi kutusuna kilitler!
+            halign: 'left'              # Veri sola dayalı olsun (veya 'center' / 'right')
+            valign: 'middle'            # Dikeyde tam ortada dursun
+           
+            # --- BONUS: EĞER VERİ ÇOK UZUNSA TAŞMASINI / ÜST ÜSTE BİNMESİNİ ENGELLER ---
+            #shorten: True               # Sığmazsa otomatik ... (üç nokta) koyar
+            #shorten_from: 'right'       # Üç noktayı sağ taraftan koyartext_size: self.size        # Hem genişliği hem yüksekliği Label'ın kendi kutusuna kilitler!
+            
+            
+      
+                
+        Label:
+            id: product_date
+            text: root.p_date
+            bold: True
+            color: 0.9, 0.9, 0.9, 1
+            text_size: self.size        # Hem genişliği hem yüksekliği Label'ın kendi kutusuna kilitler!
+            halign: 'left'              # Veri sola dayalı olsun (veya 'center' / 'right')
+            valign: 'middle'            # Dikeyde tam ortada dursun
+    
+        
+        Label:
+            id: product_price
+            text: root.p_price
+            bold: True
+            color: 0.9, 0.7, 0.2, 1
+            text_size: self.size        # Hem genişliği hem yüksekliği Label'ın kendi kutusuna kilitler!
+            halign: 'left'              # Veri sola dayalı olsun (veya 'center' / 'right')
+            valign: 'middle'            # Dikeyde tam ortada dursun
+           
+         
+        # --- DETAYLAR BUTONU ---
+        Button:
+            text: "Detaylar"
+            font_size: '13sp'
+            bold: True
+            size_hint_x: None
+            width: dp(95)
+            size_hint_y: None
+            height: dp(34)
+            pos_hint: {"center_y": 0.5}
+            background_normal: ''
+            background_down: ''
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1  
+            on_release: root.toggle_expand_product_details()
+
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex("#000000")
+                RoundedRectangle:
+                    pos: self.x - dp(2), self.y - dp(2)
+                    size: self.width + dp(4), self.height + dp(4)
+                    radius: [dp(8)]
+                Color:
+                    rgba: get_color_from_hex("#7D6608") if self.state == "normal" else get_color_from_hex('#5A4C06')
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(6)]
+
+        # --- SİL BUTONU ---
+        Button:
+            text: "Sil"
+            font_size: '13sp'
+            bold: True
+            size_hint_x: None
+            width: dp(75)
+            size_hint_y: None
+            height: dp(34)
+            pos_hint: {"center_y": 0.5}
+            background_normal: ''
+            background_down: ''
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1  
+            on_release: root.delete_product()
+
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex('#000000')
+                RoundedRectangle:
+                    pos: self.x - dp(2), self.y - dp(2)
+                    size: self.width + dp(4), self.height + dp(4)
+                    radius: [dp(8)]
+                Color:
+                    rgba: get_color_from_hex("#78281F") if self.state == "normal" else get_color_from_hex('#512E5F')
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(6)]
+
+        Button:
+            text: "Güncelle"
+            font_size: '13sp'
+            bold: True
+            size_hint_x: None
+            width: dp(95)
+            size_hint_y: None
+            height: dp(34)
+            pos_hint: {"center_y": 0.5}
+            background_normal: ''
+            background_down: ''
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1  
+            on_release: root.toggle_expand_product_update()
+            
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex('#000000') if self.state == 'normal' else get_color_from_hex('#000000')
+                RoundedRectangle:
+                    pos: self.x - dp(2), self.y - dp(2)
+                    size: self.width + dp(4), self.height + dp(4)
+                    radius: [dp(8)]
+
+                Color:
+                    rgba: get_color_from_hex('#2c3e50') if self.state == 'normal' else get_color_from_hex('#1a252f')
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size 
+                    radius: [dp(6)]
+
+<ProductDetailScreen>:
+    name: "productdetails"
+
+    Image:
+        source: "images/prodcut_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     
+        mipmap: True
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # ÜST MENÜ ÇUBUĞU (Otomatik esnek, telefonda asla taşmaz)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(40)
+            spacing: dp(2)  # Dar ekranda sıkışmaması için boşluğu biraz azalttık
+            padding: [dp(4), dp(0)]
+
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex("#7D6608")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "Ürün Ekle"
+                size_hint_x: 1  # Otomatik esner
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"  # Dar ekranda sığması için yazı boyutunu optimize ettik
+                text_size: self.width, None  # Yazının sığacağı maksimum genişliği butonun genişliğine kilitler
+                halign: "center"             # Yatayda ortalar
+                valign: "middle"             # Dikeyde ortalar
+                on_release: app.change_screen_randomly('insertproduct')
+
+            Button:
+                text: "Firma Ekle"
+                size_hint_x: 1  # Otomatik esner
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                text_size: self.width, None  # Yazının sığacağı maksimum genişliği butonun genişliğine kilitler
+                halign: "center"             # Yatayda ortalar
+                valign: "middle"             # Dikeyde ortalar
+                on_release: app.change_screen_randomly('insertcompany')
+
+            Spinner:
+                text: "Format"  # Uzun yazı telefonda taşmasın diye kompakt yapıldı
+                values: ["Excel", "Pdf"]
+                size_hint_x: 1.2
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                halign: "center"
+                valign: "middle"
+                on_text:
+                    if self.text in self.values: app.on_filter_selected(self.text)
+
+
+
+            Button:
+                text: "Çıkış"
+                size_hint_x: 0.8  # Çıkış butonu biraz daha küçük olabilir
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                text_size: self.width, None  # Yazının sığacağı maksimum genişliği butonun genişliğine kilitler
+                halign: "center"             # Yatayda ortalar
+                valign: "middle"             # Dikeyde ortalar
+                on_release: app.change_screen_randomly('login')
+        
+        # ANA İÇERİK ALANI
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(16)
+            spacing: dp(15)
+
+            # Panel Başlığı
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+
+                # Esnek Başlık (Ekran küçülünce alt alta kayar, büyüyünce uzar)
+                Label:
+                    id: pr_title
+                    text: "ProSetMan - Firma Ürün Detayları"
+                    font_size: "22sp"
+                    font_name: "materials/Pacifico-Regular.ttf"
+                    color: 0.9, 0.75, 0.3, 1
+                    size_hint_x: 1.0        # Kalan tüm yatay alanı kaplar
+                    size_hint_y: None
+                    text_size: self.width, None  # Genişliğe göre metni sarmalar (wrap)
+                    height: self.texture_size[1] # Metnin satır sayısına göre yüksekliği otomatik ayarlanır
+                    halign: 'left'
+                    valign: 'middle'
+
+                # Geri Dönüş Butonu (Sabit Boyut)
+                Button:
+                    size_hint: None, None
+                    size: dp(40), dp(40)
+                    pos_hint: {"center_y": 0.5}
+                    background_normal: "materials/previous.png"
+                    background_down: "materials/previous.png"
+                    on_release: root.back_to()
+        
+            # TABLO PANELİ
+            BoxLayout:
+                orientation: "vertical"
+                padding: [dp(10), dp(10), dp(10), dp(10)]
+                spacing: dp(6)
+
+                canvas.before:
+                    Color:
+                        rgba: 0.7, 0.5, 0.2, 0.85
+                    RoundedRectangle:
+                        pos: self.x - dp(2), self.y - dp(2)
+                        size: self.width + dp(4), self.height + dp(4)
+                        radius: [dp(16)]
+                    Color:
+                        rgba: 0.08, 0.08, 0.1, 0.95
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(14)]
+                        
+
+               
+                ScrollView:
+                    size_hint_y: 1  
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    effect_cls: "ScrollEffect"  # İçerik sınırlarında esnemeyi/zıplamayı azaltır
+                    scroll_type: ['bars', 'content']
+
+                    BoxLayout:
+                        id: product_container  
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(8)
+                        padding: dp(5)

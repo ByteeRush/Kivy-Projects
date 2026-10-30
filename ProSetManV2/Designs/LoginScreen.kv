@@ -1,0 +1,206 @@
+<LoginScreen>:
+    name: 'login'
+
+    Image:
+        source: "images/login_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     
+        mipmap: True
+   
+    # Mobilde klavye açıldığında taşmayı ve sıkışmayı önleyen ScrollView
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        size: root.size
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(15)
+            padding: [dp(20), dp(40), dp(20), dp(40)]
+
+            # Başlık (Cyberpunk Retro Stil)
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+
+                Label:
+                    #id: login_label
+                    text: "ProSetMan - Product Settings Managment"
+                    font_size: "26sp"
+                    font_name: "materials/Pacifico-Regular.ttf"
+                    color: 0.9, 0.75, 0.3, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]  # Yazının o anki gerçek yüksekliği
+                    text_size: self.width, None    # Genişlik sabit, yükseklik serbest (alt alta kayabilir)
+                    halign: 'left'
+                    valign: 'middle'
+
+            # Kartı ekranda kusursuz ortalayan AnchorLayout
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                size_hint_y: None
+                height: card_layout.height
+
+                # Esnek ve Dinamik Kart / Panel (Cyberpunk Kırmızı / Siyah / Beyaz Konsept)
+                BoxLayout:
+                    id: card_layout
+                    orientation: "vertical"
+                    size_hint: 0.9, None
+                    height: self.minimum_height
+                    pos_hint: {"center_x": 0.5}
+                    spacing: dp(14)
+                    padding: [dp(25), dp(20), dp(25), dp(20)]
+
+                    canvas.before:
+                        # Ana Panel Cyberpunk Kırmızı Çerçeve (Border)
+                        Color:
+                            rgba: 0.85, 0.08, 0.12, 0.95
+                        RoundedRectangle:
+                            pos: self.x - dp(2), self.y - dp(2)
+                            size: self.width + dp(4), self.height + dp(4)
+                            radius: [dp(26)]
+
+                        # Ana Panel Derin Siyah Zemin
+                        Color:
+                            rgba: 0.08, 0.08, 0.10, 0.92
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(24)]
+                
+                    # Kullanıcı Adı (Uyumlu Kırmızı Çerçeveli Kutu)
+                    BoxLayout:
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45)
+                        padding: [dp(4), dp(2)]
+                        canvas.before:
+                            Color:
+                                rgba: 0.85, 0.08, 0.12, 0.85
+                            RoundedRectangle:
+                                pos: self.x - dp(1), self.y - dp(1)
+                                size: self.width + dp(2), self.height + dp(2)
+                                radius: [dp(6)]
+                            Color:
+                                rgba: 0.12, 0.12, 0.14, 1
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(5)]
+
+                        TextInput:
+                            id: login_username
+                            hint_text: "Adınızı Giriniz:"
+                            multiline: False
+                            foreground_color: (1, 1, 1, 1)
+                            cursor_color: (1, 1, 1, 1)
+                            hint_text_color: (0.5, 0.5, 0.5, 1)
+                            background_normal: ""
+                            background_active: ""
+                            background_color: 0, 0, 0, 0
+                            size_hint_x: 1.0  
+                            size_hint_y: None
+                            height: dp(41) 
+                            font_size: '15sp'
+                            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+                    # Şifre (Uyumlu Kırmızı Çerçeveli Kutu)
+                    BoxLayout:
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(45)
+                        padding: [dp(4), dp(2)]
+                        canvas.before:
+                            Color:
+                                rgba: 0.85, 0.08, 0.12, 0.85
+                            RoundedRectangle:
+                                pos: self.x - dp(1), self.y - dp(1)
+                                size: self.width + dp(2), self.height + dp(2)
+                                radius: [dp(6)]
+                            Color:
+                                rgba: 0.12, 0.12, 0.14, 1
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(5)]
+
+                        TextInput:
+                            id: login_password
+                            hint_text: "Parolanızı Giriniz:"
+                            multiline: False
+                            password: True
+                            foreground_color: (1, 1, 1, 1)
+                            cursor_color: (1, 1, 1, 1)
+                            hint_text_color: (0.5, 0.5, 0.5, 1)
+                            background_normal: ""
+                            background_active: ""
+                            background_color: 0, 0, 0, 0
+                            size_hint_x: 1.0
+                            size_hint_y: None
+                            height: dp(41) 
+                            font_size: '15sp'
+                            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+                    # Submit Butonu (Retro/Cyberpunk Kırmızı Ton)
+                    Button:
+                        text: "Giriş"
+                        font_size: '16sp'
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(46) 
+                        pos_hint: {"center_x": 0.5}
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 0, 0, 0, 0
+                        on_release: root.login_to_app()
+
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex("#000000") if self.state == "normal" else get_color_from_hex('#000000')
+                            RoundedRectangle:
+                                pos: self.x - dp(2), self.y - dp(2)
+                                size: self.width + dp(4), self.height + dp(4)
+                                radius: [dp(14)]
+
+                            Color:
+                                rgba: get_color_from_hex("#c0392b") if self.state == "normal" else get_color_from_hex('#962d22')
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(12)]
+
+                    # Register Butonu (Cyberpunk Siyah/Beyaz/Gri Kontrast)
+                    Button:
+                        text: "Üye Ol"
+                        font_size: '16sp'
+                        size_hint_x: 1.0
+                        size_hint_y: None
+                        height: dp(46)
+                        pos_hint: {"center_x": 0.5}
+                        color: (1, 1, 1, 1)
+                        on_release: app.change_screen_randomly('register')
+                        
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 0, 0, 0, 0
+                        
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex('#000000') if self.state == 'normal' else get_color_from_hex('#000000')
+                            RoundedRectangle:
+                                pos: self.x - dp(2), self.y - dp(2)
+                                size: self.width + dp(4), self.height + dp(4)
+                                radius: [dp(14)]
+
+                            Color:
+                                rgba: get_color_from_hex('#2c3e50') if self.state == 'normal' else get_color_from_hex('#1a252f')
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size 
+                                radius: [dp(12)]

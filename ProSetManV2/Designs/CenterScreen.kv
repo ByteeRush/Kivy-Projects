@@ -1,0 +1,727 @@
+<CompanyRow>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(48)
+    spacing: dp(6)
+    padding: [dp(8), dp(4)]
+
+    canvas.before:
+        # Satır Arka Planı (Şeffaf Koyu Antrasit) ve İnce Alt Çizgi
+        Color:
+            rgba: 0.08, 0.12, 0.18, 0.85
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: 0.0, 0.7, 1.0, 0.25
+        Line:
+            points: [self.x, self.y, self.right, self.y]
+            width: dp(1)
+
+    # Firma ID (Genişliği minimuma indirildi, göz yormaz)
+    Label:
+        text: str(root.company_id)
+        size_hint_x: 0.06
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+        color: 0.0, 0.9, 1.0, 1
+        bold: True
+        font_size: "11sp"
+
+    # Firma Adı
+    BoxLayout:
+        size_hint_x: 0.26
+        size_hint_y: None
+        height: dp(38)
+        pos_hint: {"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgba: 0.0, 0.75, 1.0, 0.6
+            RoundedRectangle:
+                pos: self.x - dp(1), self.y - dp(1)
+                size: self.width + dp(2), self.height + dp(2)
+                radius: [dp(4)]
+            Color:
+                rgba: 0.06, 0.08, 0.12, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(3)]
+
+        TextInput:
+            text: root.company_name 
+            multiline: False
+            background_normal: ""
+            background_active: ""
+            background_color: 0, 0, 0, 0
+            foreground_color: 1, 1, 1, 1
+            cursor_color: 0.0, 0.9, 1.0, 1
+            font_size: "13sp"
+            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+            on_text: root.company_name = self.text
+
+    # Firma Numarası
+    BoxLayout:
+        size_hint_x: 0.13
+        size_hint_y: None
+        height: dp(38)
+        pos_hint: {"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgba: 0.0, 0.75, 1.0, 0.6
+            RoundedRectangle:
+                pos: self.x - dp(1), self.y - dp(1)
+                size: self.width + dp(2), self.height + dp(2)
+                radius: [dp(4)]
+            Color:
+                rgba: 0.06, 0.08, 0.12, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(3)]
+
+        TextInput:
+            text: root.company_number
+            multiline: False
+            background_normal: ""
+            background_active: ""
+            background_color: 0, 0, 0, 0
+            foreground_color: 1, 1, 1, 1
+            cursor_color: 0.0, 0.9, 1.0, 1
+            font_size: "13sp"
+            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+            on_text: root.company_number = self.text
+
+    # Firma Görevlisi
+    BoxLayout:
+        size_hint_x: 0.13
+        size_hint_y: None
+        height: dp(38)
+        pos_hint: {"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgba: 0.0, 0.75, 1.0, 0.6
+            RoundedRectangle:
+                pos: self.x - dp(1), self.y - dp(1)
+                size: self.width + dp(2), self.height + dp(2)
+                radius: [dp(4)]
+            Color:
+                rgba: 0.06, 0.08, 0.12, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(3)]
+
+        TextInput:
+            text: root.company_admin
+            multiline: False
+            background_normal: ""
+            background_active: ""
+            background_color: 0, 0, 0, 0
+            foreground_color: 1, 1, 1, 1
+            cursor_color: 0.0, 0.9, 1.0, 1
+            font_size: "13sp"
+            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+            on_text: root.company_admin = self.text
+
+    # Firma Sektör
+    BoxLayout:
+        size_hint_x: 0.16
+        size_hint_y: None
+        height: dp(38)
+        pos_hint: {"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgba: 0.0, 0.75, 1.0, 0.6
+            RoundedRectangle:
+                pos: self.x - dp(1), self.y - dp(1)
+                size: self.width + dp(2), self.height + dp(2)
+                radius: [dp(4)]
+            Color:
+                rgba: 0.06, 0.08, 0.12, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(3)]
+
+        TextInput:
+            text: root.company_sector
+            multiline: False
+            background_normal: ""
+            background_active: ""
+            background_color: 0, 0, 0, 0
+            foreground_color: 1, 1, 1, 1
+            cursor_color: 0.0, 0.9, 1.0, 1
+            font_size: "13sp"
+            padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+            on_text: root.company_sector = self.text  
+
+    # İşlem Butonları Alanı
+    BoxLayout:
+        size_hint_x: None
+        width: dp(220)
+        spacing: dp(4)
+        size_hint_y: None
+        height: dp(34)
+        pos_hint: {"center_y": 0.5}
+
+        # Güncelle Butonu
+        Button:
+            text: "Güncelle"
+            font_size: "10sp"
+            bold: True
+            background_normal: ""
+            background_down: ""
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1
+            on_release: root.update_company()
+
+            canvas.before:
+                Color:
+                    rgba: 0.0, 0.75, 1.0, 0.8
+                RoundedRectangle:
+                    pos: self.x - dp(1), self.y - dp(1)
+                    size: self.width + dp(2), self.height + dp(2)
+                    radius: [dp(6)]
+                Color:
+                    rgba: 0.08, 0.10, 0.15, 1 if self.state == "normal" else 0.0, 0.4, 0.6, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(5)]
+
+        # Sil Butonu
+        Button:
+            text: "Sil"
+            font_size: "10sp"
+            bold: True
+            background_normal: ""
+            background_down: ""
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1
+            on_release: root.delete_company()
+
+            canvas.before:
+                Color:
+                    rgba: 0.85, 0.1, 0.2, 0.8
+                RoundedRectangle:
+                    pos: self.x - dp(1), self.y - dp(1)
+                    size: self.width + dp(2), self.height + dp(2)
+                    radius: [dp(6)]
+                Color:
+                    rgba: 0.12, 0.05, 0.08, 1 if self.state == "normal" else 0.5, 0.1, 0.15, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(5)]
+
+        # Firma Ürünleri Butonu
+        Button:
+            text: "Ürünler"
+            font_size: "10sp"
+            bold: True
+            background_normal: ""
+            background_down: ""
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 1
+            on_release: root.trigger_product_id()
+
+            canvas.before:
+                Color:
+                    rgba: 0.0, 0.75, 1.0, 0.8
+                RoundedRectangle:
+                    pos: self.x - dp(1), self.y - dp(1)
+                    size: self.width + dp(2), self.height + dp(2)
+                    radius: [dp(6)]
+                Color:
+                    rgba: 0.08, 0.10, 0.15, 1 if self.state == "normal" else 0.0, 0.4, 0.6, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(5)]
+
+<SpinnerOption>:
+    background_normal: ""
+    background_color: 0.08, 0.10, 0.15, 1
+    color: 0.0, 0.9, 1.0, 1
+    font_size: "14sp"
+    height: dp(45)
+    halign: "center"
+    valign: "middle"
+
+<CompanyFilter>:
+    title: ""
+    title_align: "center"
+    separator_height: 0  
+    size_hint: (0.9, 0.9)  # Ekranda çok büyük yer kaplamasın, %90'ı geçmesin
+    auto_dismiss: True
+    
+    background: ''
+    background_color: 0, 0, 0, 0  
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.x - dp(2), self.y - dp(2)
+            size: self.width + dp(4), self.height + dp(4)
+            radius: [dp(18)]
+        Color:
+            rgba: 0.02, 0.05, 0.12, 0.95
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(16)]
+
+    # 🚀 İŞTE ÇÖZÜM: Bütün Popup içeriğini dıştan bir ScrollView içine aldık!
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        bar_width: dp(4)
+        # Efekt sınıfını pasif yaparak titremeyi engelle
+        effect_cls: 'ScrollEffect' 
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(12)
+            size_hint_y: None
+            height: self.minimum_height
+
+            # Başlık
+            Label:
+                text: "PROSETMAN - FIRMA ARAMA"
+                font_size: '15sp'
+                font_name: "materials/Pacifico-Regular.ttf"
+                bold: True
+                color: 0.0, 0.8, 1.0, 1  
+                size_hint_y: None
+                height: dp(40)
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+            # 1. Ürün İsmi
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(2)
+                size_hint_y: None
+                height: dp(54)
+                Label:
+                    text: "Firma / İÇERİK İSMİ"
+                    font_size: '10sp'
+                    bold: True
+                    color: 1, 1, 1, 1  
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(34)
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            pos: self.x - dp(1), self.y - dp(1)
+                            size: self.width + dp(2), self.height + dp(2)
+                            radius: [dp(6)]
+                        Color:
+                            rgba: 0.03, 0.07, 0.15, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(5)]
+                    TextInput:
+                        id: filter_product_name
+                        hint_text: "Firma adına Göre.."
+                        hint_text_color: 0.5, 0.6, 0.7, 1
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0, 0, 0, 0
+                        foreground_color: 1, 1, 1, 1  
+                        cursor_color: 0.0, 0.8, 1.0, 1
+                        font_size: "12sp"
+                        padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+            # 2. Sektör
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(2)
+                size_hint_y: None
+                height: dp(54)
+                Label:
+                    text: "SEKTÖR"
+                    font_size: '10sp'
+                    bold: True
+                    color: 1, 1, 1, 1  
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(34)
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            pos: self.x - dp(1), self.y - dp(1)
+                            size: self.width + dp(2), self.height + dp(2)
+                            radius: [dp(6)]
+                        Color:
+                            rgba: 0.03, 0.07, 0.15, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(5)]
+                    TextInput:
+                        id: filter_sector
+                        hint_text: "Sektör filtrele..."
+                        hint_text_color: 0.5, 0.6, 0.7, 1
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0, 0, 0, 0
+                        foreground_color: 1, 1, 1, 1  
+                        cursor_color: 0.0, 0.8, 1.0, 1
+                        font_size: "12sp"
+                        padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+            # 3. Yetkili Adı
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(2)
+                size_hint_y: None
+                height: dp(54)
+                Label:
+                    text: "YETKİLİ ADI"
+                    font_size: '10sp'
+                    bold: True
+                    color: 1, 1, 1, 1  
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(34)
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            pos: self.x - dp(1), self.y - dp(1)
+                            size: self.width + dp(2), self.height + dp(2)
+                            radius: [dp(6)]
+                        Color:
+                            rgba: 0.03, 0.07, 0.15, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(5)]
+                    TextInput:
+                        id: filter_admin
+                        hint_text: "Yetkili ismi ara..."
+                        hint_text_color: 0.5, 0.6, 0.7, 1
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0, 0, 0, 0
+                        foreground_color: 1, 1, 1, 1  
+                        cursor_color: 0.0, 0.8, 1.0, 1
+                        font_size: "12sp"
+                        padding: [dp(8), (self.height - self.line_height) / 2, dp(8), 0]
+
+            # Butonlar
+            BoxLayout:
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(10)
+
+                Button:
+                    text: "İPTAL"
+                    font_size: "10sp"
+                    bold: True
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+                    on_release: root.dismiss()
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        RoundedRectangle:
+                            pos: self.x - dp(1), self.y - dp(1)
+                            size: self.width + dp(2), self.height + dp(2)
+                            radius: [dp(6)]
+                        Color:
+                            rgba: (0.2, 0.04, 0.08, 1) if self.state == "normal" else (0.5, 0.1, 0.2, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(5)]
+
+                Button:
+                    text: "FİLTREYİ ÇALIŞTIR"
+                    font_size: "10sp"
+                    bold: True
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+                    on_release: root.apply_cmp_filter()
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        RoundedRectangle:
+                            pos: self.x - dp(1), self.y - dp(1)
+                            size: self.width + dp(2), self.height + dp(2)
+                            radius: [dp(6)]
+                        Color:
+                            rgba: (0.04, 0.1, 0.25, 1) if self.state == "normal" else (0.0, 0.4, 0.8, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(5)]
+
+<CenterScreen>:
+    name: "center"
+
+    Image:
+        source: "images/prodcut_image.jpg"
+        size: root.size
+        pos: self.pos
+        allow_stretch: True   
+        keep_ratio: False     
+        mipmap: True
+
+    BoxLayout:
+        orientation: "vertical"
+
+        #
+        # ÜST MENÜ ÇUBUĞU (Sabit piksel yok, yüzdelik oranlarla otomatik esner)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(40)
+            spacing: dp(4)
+            padding: [dp(4), dp(0)]
+
+            canvas.before:
+                Color:
+                    rgba: 0.0, 0.4, 0.6, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "Ürün Ekle"
+                size_hint_x: 1.1
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                on_release: app.change_screen_randomly('insertproduct')
+
+            Button:
+                text: "Firma Ekle"
+                size_hint_x: 1.1
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                on_release: app.change_screen_randomly('insertcompany')
+
+            Spinner:
+                text: "Format"  # Uzun yazı telefonda taşmasın diye kompakt yapıldı
+                values: ["Excel", "Pdf"]
+                size_hint_x: 1.2
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                halign: "center"
+                valign: "middle"
+                on_text:
+                    if self.text in self.values: app.on_filter_selected(self.text)
+
+            Button:
+                text: "Firma Filtrele"  # Uzun yazı taşmasın diye kompakt yapıldı
+                size_hint_x: 1.0
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                on_release: root.open_company_filter_popup()
+
+            Button:
+                text: "Çıkış"
+                size_hint_x: 0.8
+                size_hint_y: None
+                height: dp(40)
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+                bold: True
+                font_size: "11sp"
+                on_release: app.change_screen_randomly('login')
+        # ANA İÇERİK ALANI
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(16)
+            spacing: dp(15)
+
+            # Panel Başlığı
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height  # <--- İŞTE SİHİR BURADA: İçindeki Label büyüdükçe bu da büyür!
+                
+                Label:
+                    id: pr_title
+                    text: "ProSetMan - Product Management Panel"
+                    font_size: "22sp"  # Telefonda daha rahat sığması için optimize edildi
+                    font_name: "materials/Pacifico-Regular.ttf"
+                    color: 0.0, 0.9, 1.0, 1
+                    
+                    size_hint_y: None
+                    height: self.texture_size[1]  # Yazının o anki gerçek yüksekliği
+                    text_size: self.width, None    # Genişlik sabit, yükseklik serbest (alt alta kayabilir)
+                    halign: 'left'
+                    valign: 'middle'
+
+            # CYBERPUNK MAVİ TABLO PANELİ
+            BoxLayout:
+                orientation: "vertical"
+                padding: [dp(10), dp(10), dp(10), dp(10)]
+                spacing: dp(6)
+
+                canvas.before:
+                    # Neon Mavi Dış Çerçeve
+                    Color:
+                        rgba: 0.0, 0.75, 1.0, 0.95
+                    RoundedRectangle:
+                        pos: self.x - dp(2), self.y - dp(2)
+                        size: self.width + dp(4), self.height + dp(4)
+                        radius: [dp(16)]
+                    # Koyu Transparan Zemin
+                    Color:
+                        rgba: 0.05, 0.07, 0.11, 0.92
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(14)]
+
+                # Sabit Başlık Satırı
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(40)
+                    padding: [dp(8), dp(5)]
+                    spacing: dp(6)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.0, 0.4, 0.6, 0.7
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(8)]
+
+                    Label:
+                        text: "ID"
+                        size_hint_x: 0.06
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "11sp"
+                        color: 0.0, 0.95, 1.0, 1
+
+                    Label:
+                        text: "Firma Adı"
+                        size_hint_x: 0.26
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "12sp"
+                        color: 1, 1, 1, 1
+
+                    Label:
+                        text: "Firma Numarası"
+                        size_hint_x: 0.13
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "12sp"
+                        color: 1, 1, 1, 1
+
+                    Label:
+                        text: "Firma Görevlisi"
+                        size_hint_x: 0.13
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "12sp"
+                        color: 1, 1, 1, 1
+
+                    Label:
+                        text: "Firma Sektör"
+                        size_hint_x: 0.16
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "12sp"
+                        color: 1, 1, 1, 1
+
+                    Label:
+                        text: "İşlem"
+                        size_hint_x: None
+                        width: dp(220)
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        bold: True
+                        font_size: "12sp"
+                        color: 0.0, 0.95, 1.0, 1
+
+                # Dinamik Ürün Listesi
+                RecycleView:
+                    id: rv
+                    viewclass: "CompanyRow"
+                    bar_width: dp(6)
+                    bar_color: 0.0, 0.8, 1.0, 0.8
+                    scroll_type: ["bars", "content"]
+
+                    RecycleBoxLayout:
+                        default_size: None, dp(48)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: "vertical"
+                        spacing: dp(4)
